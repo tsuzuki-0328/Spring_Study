@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/confirm.css" rel="stylesheet"></link>
+</head>
+<body>
+    <table>
+        <tr>
+            <th class="cell_title">氏名</th>
+            <td>
+                [[${userForm.name}]]
+            </td>
+        </tr>
+        <tr>
+            <th class="cell_title">E-Mail</th>
+            <td>
+                [[${userForm.email}]]
+            </td>
+        </tr>
+        <tr>
+            <th class="cell_title">年齢</th>
+            <td>
+                [[${userForm.age}]]
+            </td>
+        </tr>
+		<tr>
+		    <th class="cell_title">備考</th>
+		    <td>
+		        [[${userForm.remakes}]]
+		    </td>
+		</tr>
+    </table>
+</body>
+</html>
