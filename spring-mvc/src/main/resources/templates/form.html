@@ -6,7 +6,6 @@
     <link href="/css/form.css" rel="stylesheet"></link>
 </head>
 <body>
-<body>
 
 <form th:action="@{/form}" th:object="${userForm}" method="post">
 
@@ -39,8 +38,8 @@
 			 <th class="cell_title">備考</th>
 			 <th class="cell_required"></th>
 			 <td>
-			     <input type="text" th:field="*{remakes}">
-			     <span th:errorclass="error_text" th:if="${#fields.hasErrors('remakes')}" th:errors="*{remakes}"></span>
+			     <input type="text" th:field="*{note}">
+			     <span th:errorclass="error_text" th:if="${#fields.hasErrors('note')}" th:errors="*{note}"></span>
 			</td>
 		</tr>
 	</table>

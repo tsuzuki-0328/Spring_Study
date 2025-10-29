@@ -30,7 +30,7 @@ public class UserForm {
 
     
     @Size(min = 1, max = 20, message = "備考は20文字以内で入力してください。", groups = Group2.class)
-    private String remakes;
+    private String note;
     
     public interface Group1 {}
     public interface Group2 {}
