@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.domain.Persistable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Data;
@@ -20,7 +21,7 @@ import lombok.Data;
 @Table(name = "users")
 @Data
 @EntityListeners(AuditingEntityListener.class)
-public class Users {
+public class Users implements Persistable<Integer>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,11 +43,8 @@ public class Users {
     @LastModifiedDate
     @Column(name = "updated_date")
     private OffsetDateTime updatedDate;
-
-    public Integer getId() {
-        return this.id;
-    }
-
+    
+    @Override
     public boolean isNew() {
         return this.id == null;
     }
