@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html th:lang="ja"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+	    <meta charset="UTF-8">
+	    <link rel="stylesheet" th:href="@{/css/layout/layout.css}">
+	    <link rel="stylesheet" th:href="@{/css/fragments/header.css}">          <!--←　追加-->
+	</head>
+	<body>
+	    <th:block th:replace="fragments/header::header"></th:block>            <!--←　<header> ～ </header> を置き換える -->
+	    <th:block layout:fragment="contents"></th:block>
+	</body>
+</html>

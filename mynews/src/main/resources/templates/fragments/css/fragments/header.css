@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+/* ヘッダー */
+header {
+  width: 100%;
+  padding: 30px 4% 10px;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+}
+
+.header-list {
+  margin: 0 0 0 15px;
+  font-size: 14px;
+}
+
+.header-ul {
+  margin: 0;
+  display: flex;
+}
+
+.header-title {
+  margin: 0;
+  padding: 0;
+}
