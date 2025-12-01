@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/news/complete.css}" />
+</head>
+<body>
+    <main layout:fragment="contents">
+        <div class="wrapper">
+            <h1>ニュース作成完了</h1>
+            <p class="text">ニュースの作成が完了しました。</p>
+            <div class="return_btn-area">
+                <a class="return_btn" th:href="@{/news/list}">一覧画面に戻る</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

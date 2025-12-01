@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html th:lang="ja"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}">
+<head>
+	<meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/profile/create.css}">
+</head>
+<body>
+	<main layout:fragment="contents">
+	 <div class="wrapper">
+	    <h1>ニュース新規作成</h1>
+	    <form th:action="@{/profile/create}" enctype="multipart/form-data" method="post" th:object="${form}">
+	        <ul class="form-ul">
+	            <li>
+	                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="error_msg"></p>
+	                <div class="form-body">
+	                    <label for="name" class="title">名前</label>
+	                    <input type="text" th:field="*{name}" class="input-area">
+	                </div>
+	            </li>
+				<li>
+					<p th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"th:errorclass="error_msg"></p>
+					<div class="form-body">
+						<label for="gender" class="title">性別</label>
+						<input type="text" th:field="*{gender}" class="input-area">
+					</div>
+				</li>
+				<li>
+					<p th:if="${#fields.hasErrors('hobby')}"th:errors="*{hobby}"th:errorclass="error_msg"></p>
+					<div class="form-body">
+						<label for="hobby" class="title">趣味</label>
+						<input type="text" th:field="*{hobby}" class="input-area">
+					</div>
+				</li>
+	            <li>
+	                <p th:if="${#fields.hasErrors('introduction')}" th:errors="*{introduction}" th:errorclass="error_msg"></p>
+	                <div class="form-body">
+	                    <label for="introduction" class="introduction">自己紹介欄</label>
+	                    <textarea th:field="*{introduction}" rows="15" class="input-area textarea"></textarea>
+	                </div>
+	            </li>
+	            <li>
+	                <div class="form-body">
+	                    <label for="file" class="title">画像</label>
+	                    <input type="file" th:field="*{image}" class="input-area input-area_file" />
+	                </div>
+	            </li>
+	            <li class="btn-area">
+	                <button class="btn">送信</button>
+	            </li>
+	        </ul>
+	    </form>
+	    <div class="return_btn-area"><a class="return_btn" th:href="@{/news/list}">一覧画面に戻る</a></div>
+	 </div>
+	</main>
+</body>
+</html>

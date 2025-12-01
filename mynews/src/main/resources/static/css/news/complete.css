@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+.text {
+  margin: 10px 0 30px;
+  font-size: 1.2rem;
+}
+
+.btn-area,
+.return_btn-area {
+  text-align: center;
+}
+
+.btn,
+.return_btn {
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+}
+
+.btn {
+  background-color: #398ed3;
+}
+
+.return_btn {
+  background-color: gray;
+}
