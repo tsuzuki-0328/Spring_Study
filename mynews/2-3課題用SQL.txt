@@ -1,0 +1,18 @@
+DROP TABLE if exists profiles CASCADE; 
+DROP SEQUENCE if exists profiles_id_seq CASCADE; 
+CREATE SEQUENCE profiles_id_seq; 
+ALTER SEQUENCE profiles_id_seq OWNER TO postgres; 
+CREATE TABLE profiles( 
+id INTEGER DEFAULT nextval('profiles_id_seq'::regclass), 
+name VARCHAR(20) NOT NULL, 
+gender VARCHAR(10) NOT NULL, 
+hobby text NOT NULL, 
+introduction text NOT NULL, 
+registered_date timestamp(4) with time zone NOT NULL, 
+update_date timestamp(4) with time zone NOT NULL, 
+CONSTRAINT profiles_pk PRIMARY KEY(id) 
+);
+
+
+image_nameカラムが抜けてたので追加
+ALTER TABLE profiles ADD COLUMN image_name VARCHAR(255);
