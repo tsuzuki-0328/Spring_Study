@@ -22,13 +22,12 @@ public class ProfileListService {
     public List<ProfileNews> list(String name) {
 
         List<ProfileNews> profileList = new ArrayList<>();
-        if(Objects.isNull(name) || name.isEmpty()) {
-        	
-        profileList = profileRepository.findAllByOrderById();
-        }else {
+        //一覧取得
+        if (Objects.isNull(name) || name.isEmpty()) {
+            profileList = profileRepository.findAllByOrderById();
+        } else {
         	profileList = profileRepository.findByNameLike(createLikeParam(name));
         }
-
         return profileList;
     }
     
