@@ -1,4 +1,4 @@
-package com.jutjoy.domain.form.news;
+package com.jutjoy.domain.form.profile;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;

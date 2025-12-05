@@ -1,4 +1,4 @@
-package com.jutjoy.domain.service.news;
+package com.jutjoy.domain.service.profile;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jutjoy.common.CommonConstant;
-import com.jutjoy.domain.entity.news.ProfileNews;
-import com.jutjoy.domain.form.news.ProfielsCreateForm;
+import com.jutjoy.domain.entity.profile.ProfileNews;
+import com.jutjoy.domain.form.profile.ProfielsCreateForm;
 import com.jutjoy.domain.repository.ProfileRepository;
 
 @Service

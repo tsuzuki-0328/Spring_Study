@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/profile/profileList.css}" rel="stylesheet">
+</head>
+<body>
+    <main layout:fragment="contents">
+        <div class="wrapper">
+            <h1>プロフィール一覧</h1>
+            <div class="top-area">
+                <button class="btn" th:onclick="location.href='/profile/create'">新規作成</button>
+                <form th:action="@{/profile/list}" method="get" class="search">
+                    タイトル
+                    <input type="text" name="name" th:value="${name}" class="input-search">
+                    <button class="search-btn">検索</button>
+                </form>
+            </div>
+            <table border="1">
+				<tr>
+				    <th>No</th>
+				    <th>タイトル</th>
+				    <th>性別</th>
+				    <th>自己紹介</th>
+				    <th>趣味</th>
+				    <th>操作</th>
+				</tr>
+				<tr th:each="profile,status : ${profileList}">
+				    <td>[[${status.count}]]</td>
+				    <td>
+				        <p class="td-title" th:text="${#strings.length(profile.name) <= 20} ? ${profile.name} : |${#strings.substring(profile.name, 0, 20)}...|"></p>
+				    </td>
+				    <td>
+				        <p class="td-contents" th:text="${#strings.length(profile.gender) <= 20} ? ${profile.gender} : |${#strings.substring(profile.gender, 0, 20)}...|"></p>
+				    </td>
+					<td>
+						<p class="td-contents" th:text="${#strings.length(profile.introduction) <= 500} ? ${profile.introduction} : |${#strings.substring(profile.introduction,0,500)}...|"></p>
+					</td>
+					<td>
+						<p class="td-contents" th:text="${#strings.length(profile.hobby) <= 50} ? ${profile.hobby} : |${#strings.substring(profile.hobby, 0, 50)}...|"></p>
+					</td>
+				    <td class="operation-box">
+				    </td>
+				</tr>
+            </table>
+        </div>
+    </main>
+</body>
+</html>
