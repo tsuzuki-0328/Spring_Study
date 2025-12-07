@@ -34,6 +34,12 @@
 				        <p class="td-contents" th:text="${#strings.length(news.content) <= 40} ? ${news.content} : |${#strings.substring(news.content, 0, 40)}...|"></p>
 				    </td>
 				    <td class="operation-box">
+						<a th:href="@{/news/edit/__${news.id}__}" class="operation">編集</a>
+						<form method="post" name="delete" th:action="@{/news/delete}">
+						    <input type="hidden" name="id" th:value="${news.id}">
+						    <a onclick="this.parentNode.submit()" class="operation">削除</a>
+						</form>
+
 				    </td>
 				</tr>
             </table>

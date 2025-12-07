@@ -42,6 +42,11 @@
 						<p class="td-contents" th:text="${#strings.length(profile.hobby) <= 50} ? ${profile.hobby} : |${#strings.substring(profile.hobby, 0, 50)}...|"></p>
 					</td>
 				    <td class="operation-box">
+						<a th:href="@{/profile/edit/__${profile.id}__}" class="operation">編集</a>
+						<form method="post" name="delete" th:action="@{/profile/delete}">
+						      <input type="hidden" name="id" th:value="${profile.id}">
+						      <a onclick="this.parentNode.submit()" class="operation">削除</a>
+						</form>
 				    </td>
 				</tr>
             </table>

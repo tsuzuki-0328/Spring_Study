@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html th:lang="ja"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/profile/edit.css}">
+</head>
+<body>
+    <main layout:fragment="contents">
+        <div class="wrapper">
+            <h1>ニュース編集</h1>
+            <form th:action="@{/profile/edit/__${profile.id}__}" enctype="multipart/form-data" method="post">
+                <ul class="form-ul">
+                    <!--名前-->
+                    <li>
+                        <p th:if="${#fields.hasErrors('form.name')}" th:errors="*{form.name}" th:errorclass="error_msg"></p>
+                        <div class="form-body">
+                            <label for="name" class="title">名前</label>
+                            <input type="text" class="input-area" th:value="${profile.name}" name="name" />
+                        </div>
+                    </li>
+                    <!--性別-->
+                    <li>
+                        <p th:if="${#fields.hasErrors('form.gender')}" th:errors="*{form.gender}" th:errorclass="error_msg"></p>
+                        <div class="form-body">
+                            <label for="gender" class="title">性別</label>
+                            <input type="text" class="input-area" th:value="${profile.gender}" name="gender" />
+                        </div>
+                    </li>
+                    <!--趣味-->
+                    <li>
+                        <p th:if="${#fields.hasErrors('form.hobby')}" th:errors="*{form.hobby}" th:errorclass="error_msg"></p>
+                        <div class="form-body">
+                            <label for="hobby" class="title">趣味</label>
+                            <input type="text" class="input-area" th:value="${profile.hobby}" name="hobby" />
+                        </div>
+                    </li>
+                    <!--自己紹介文-->
+                    <li>
+                        <p th:if="${#fields.hasErrors('form.introduction')}" th:errors="*{form.introduction}" th:errorclass="error_msg"></p>
+                        <div class="form-body">
+                            <label for="introduction" class="title">本文</label>
+                            <textarea rows="15" class="input-area textarea" th:text="${profile.introduction}" name="introduction"></textarea>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-body form-body-img">
+                            <p class="u-margin_0">画像</p>
+                            <div class="form-body-inner">
+                                <div>
+                                    <input id="file" type="file" name="image" class="input-area input-area_file">
+                                </div>
+                                <div class="form-img-box">
+                                    <p class="form-img-text u-margin_0">
+                                        <span>設定中:</span>
+                                        <span th:text="${profile.imageName}"></span>
+                                    </p>
+                                </div>
+                                <div class="flex">
+                                    <input id="checkbox" type="checkbox" name="imageRemove" class="checkbox"/>
+                                    <label class="form-img-text" for="checkbox">設定中の画像を削除</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="btn-area">
+                        <button class="btn">更新</button>
+                    </li>
+                </ul>
+            </form>
+            <div class="return_btn-area">
+                <a class="return_btn" th:href="@{/news/list}">一覧画面に戻る</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

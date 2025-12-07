@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html th:lang="ja"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/news/edit.css}">
+</head>
+<body>
+    <main layout:fragment="contents">
+        <div class="wrapper">
+            <h1>ニュース編集</h1>
+            <form th:action="@{/news/edit/__${news.id}__}" enctype="multipart/form-data" method="post">
+                <ul class="form-ul">
+                    <li>
+                        <p th:if="${#fields.hasErrors('form.title')}" th:errors="*{form.title}" th:errorclass="error_msg"></p>
+                        <div class="form-body">
+                            <label for="title" class="title">タイトル</label>
+                            <input type="text" class="input-area" th:value="${news.title}" name="title" />
+                        </div>
+                    </li>
+                    <li>
+                        <p th:if="${#fields.hasErrors('form.content')}" th:errors="*{form.content}" th:errorclass="error_msg"></p>
+                        <div class="form-body">
+                            <label for="content" class="title">本文</label>
+                            <textarea rows="15" class="input-area textarea" th:text="${news.content}" name="content"></textarea>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-body form-body-img">
+                            <p class="u-margin_0">画像</p>
+                            <div class="form-body-inner">
+                                <div>
+                                    <input id="file" type="file" name="image" class="input-area input-area_file">
+                                </div>
+                                <div class="form-img-box">
+                                    <p class="form-img-text u-margin_0">
+                                        <span>設定中:</span>
+                                        <span th:text="${news.imageName}"></span>
+                                    </p>
+                                </div>
+                                <div class="flex">
+                                    <input id="checkbox" type="checkbox" name="imageRemove" class="checkbox"/>
+                                    <label class="form-img-text" for="checkbox">設定中の画像を削除</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="btn-area">
+                        <button class="btn">更新</button>
+                    </li>
+                </ul>
+            </form>
+            <div class="return_btn-area">
+                <a class="return_btn" th:href="@{/news/list}">一覧画面に戻る</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
