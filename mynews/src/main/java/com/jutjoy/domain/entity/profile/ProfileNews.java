@@ -1,6 +1,7 @@
 package com.jutjoy.domain.entity.profile;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,6 +9,7 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -49,5 +51,8 @@ public class ProfileNews {
 	@LastModifiedDate
 	@Column(name = "update_date")
 	private Timestamp update_date;
+	
+	@OneToMany(mappedBy = "profileNews")
+	private List<ProfileHistories> histories;
 
 }

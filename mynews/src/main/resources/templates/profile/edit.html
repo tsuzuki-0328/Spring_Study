@@ -10,7 +10,7 @@
 <body>
     <main layout:fragment="contents">
         <div class="wrapper">
-            <h1>ニュース編集</h1>
+            <h1>プロフィール編集</h1>
             <form th:action="@{/profile/edit/__${profile.id}__}" enctype="multipart/form-data" method="post">
                 <ul class="form-ul">
                     <!--名前-->
@@ -71,8 +71,12 @@
                 </ul>
             </form>
             <div class="return_btn-area">
-                <a class="return_btn" th:href="@{/news/list}">一覧画面に戻る</a>
+                <a class="return_btn" th:href="@{/profile/list}">一覧画面に戻る</a>
             </div>
+			<p class="history_text">編集履歴</p>
+			<ul class="history">
+			    <li th:each="history : ${profile.histories}" class="date" th:text="${#dates.format(history.editedDate, 'yyyy-MM-dd hh:mm:ss')}"></li>
+			</ul>
         </div>
     </main>
 </body>

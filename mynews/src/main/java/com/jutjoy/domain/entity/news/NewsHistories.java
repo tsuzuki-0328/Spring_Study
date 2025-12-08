@@ -1,7 +1,6 @@
 package com.jutjoy.domain.entity.news;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,43 +8,36 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Data;
 
 @Entity
-@Table(name="news")
+@DynamicUpdate
+@Table(name="news_histories")
 @Data
 @EntityListeners(AuditingEntityListener.class)
-public class News {
+public class NewsHistories {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "title")
-    private String title;
-
-    @Column(name = "content")
-    private String content;
-
-    @Column(name = "image_name")
-    private String imageName;
-
-    @CreatedDate
-    @Column(name = "registered_date")
-    private Timestamp registeredDate;
+    @Column(name = "news_id")
+    private Integer newsId;
 
     @LastModifiedDate
-    @Column(name = "updated_date")
-    private Timestamp updatedDate;
-    
-    @OneToMany(mappedBy = "news")
-    private List<NewsHistories> histories;
+    @Column(name = "edited_date")
+    private Timestamp editedDate;
+
+    @ManyToOne
+    @JoinColumn(insertable = false, updatable = false)
+    private News news;
 }

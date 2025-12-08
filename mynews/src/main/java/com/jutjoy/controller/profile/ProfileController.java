@@ -96,5 +96,10 @@ public class ProfileController {
         profileDeleteService.delete(id);
         return "redirect:/profile/list";
     }
+    
+    @GetMapping("/profile/edit/complete")
+    public String editComplete() {
+        return "profile/complete";
+    }
 
 }

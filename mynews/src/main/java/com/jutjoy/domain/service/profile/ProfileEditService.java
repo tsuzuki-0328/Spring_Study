@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jutjoy.domain.entity.profile.ProfileHistories;
 import com.jutjoy.domain.entity.profile.ProfileNews;
 import com.jutjoy.domain.form.profile.ProfileEditForm;
+import com.jutjoy.domain.repository.ProfileHistoriesRepository;
 import com.jutjoy.domain.repository.ProfileRepository;
 
 import lombok.AllArgsConstructor;
@@ -25,6 +27,9 @@ import lombok.AllArgsConstructor;
 
 	    @Autowired
 	    private ProfileRepository profileRepository;
+	    
+	    @Autowired
+	    private ProfileHistoriesRepository profileHistoriesRepository;
 
 	    private final String FILE_PATH = "/upload_file/profile";
 
@@ -35,8 +40,11 @@ import lombok.AllArgsConstructor;
 	        ProfileNews entity = profileRepository.findById(id).get();
 	        String beforeImageName = entity.getImageName();
 
-	        // ニュース更新処理
+	        // プロフィール更新処理
 	        ProfileNews profile = editProfile(entity, form);
+	        
+	        //プロフィール更新履歴
+	        registerHistory(entity.getId());
 
 	        try {
 
@@ -102,6 +110,19 @@ import lombok.AllArgsConstructor;
 	            entity.setImageName(null);
 	        }
 	        return profileRepository.save(entity);
+	    }
+	    
+	    private void registerHistory(Integer id) {
+	    	 // ① 元のプロフィール情報を取得
+	    	ProfileNews profile = profileRepository.findById(id).orElseThrow();
+	    	// ② 履歴エンティティにコピー
+	        ProfileHistories entity = new ProfileHistories();
+	        entity.setProfileId(id);
+	        entity.setName(profile.getName());
+	        entity.setGender(profile.getGender());
+	        entity.setHobby(profile.getHobby());
+	        entity.setIntroduction(profile.getIntroduction());
+	        profileHistoriesRepository.save(entity);
 	    }
 
 	}
