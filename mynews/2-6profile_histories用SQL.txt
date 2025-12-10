@@ -1,0 +1,17 @@
+DROP TABLE if exists profile_histories CASCADE;
+DROP SEQUENCE if exists profile_history_id_seq CASCADE;
+CREATE SEQUENCE profile_history_id_seq;
+ALTER SEQUENCE profile_history_id_seq OWNER TO postgres;
+CREATE TABLE profile_histories (
+    id INTEGER DEFAULT nextval('profile_history_id_seq'::regclass),
+    profile_id INTEGER NOT NULL,
+    name VARCHAR(20) NOT NULL, 
+    gender VARCHAR(10) NOT NULL, 
+    hobby text NOT NULL, 
+    introduction text NOT NULL, 
+    edited_date timestamp(4) with time zone NOT NULL,
+    CONSTRAINT profile_histories_profile_id_fk FOREIGN KEY (profile_id)
+        REFERENCES profiles (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
